@@ -1,11 +1,10 @@
 # tape-out-service
-It is necessary to implement the service of outputting the Twitter tape with the update in real time.
-
+ implement the service of outputting the Twitter tape.
 
 ## Requirements:
-- mandatory presence of composer.- implementation on "pure" PHP.
-- Output no more than 25 last messages. - Implementation of the frontend is arbitrary (jQuery, Angular, React).
-- The architecture should allow the connection of other news tapes (other systems).
+- Output no more than 25 last messages. 
+- The architecture allow the connection of other news tapes (other systems).
+- Implementation of the frontend is arbitrary (jQuery, Angular, React).
 
 ## Services
 
