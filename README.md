@@ -1,21 +1,17 @@
-# tape-out-service
- implement the service of outputting the Twitter tape.
+# Tape out service
+Service of outputting the (Twitter, Facebook, Google+) tape.
 
 ## Requirements:
-- Output no more than 25 last messages. 
 - The architecture allow the connection of other news tapes (other systems).
 - Implementation of the frontend is arbitrary (jQuery, Angular, React).
 
 ## Services
-
 + Twitter
 
 ## Install
-
 + composer install && composer dumpautoload -o
 
 ## Usage
-
 ```php
 require_once "vendor/autoload.php";
 
