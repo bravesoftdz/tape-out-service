@@ -3,6 +3,7 @@
 namespace Dykyi;
 
 use Dykyi\Driver\TwitterDriver;
+use Dykyi\Handle\BuilderInterface;
 use Dykyi\Handle\SocialDriverInterface;
 use Exception;
 
@@ -13,26 +14,39 @@ use Exception;
 class Application extends BaseApplication
 {
     /**
-     * @var SocialDriverInterface;
+     * @param $serviceName
+     * @return mixed
      */
-    private $service;
-
-    /**
-     * @param string $serviceName
-     */
-    private function createSocialService($serviceName){
+    private function createSocialService($serviceName)
+    {
         $this->logger->info('Create social service');
         $serviceLocator = new ServiceLocator();
-        $this->service = $serviceLocator->createByName($serviceName);
+
+        return $serviceLocator->createByName($serviceName);
     }
 
     /**
-     * @return string
+     * @param SocialDriverInterface $service
+     * @param BuilderInterface $builder
+     * @return mixed
      */
-    private function getSocialData()
+    private function getSocialData(SocialDriverInterface $service, BuilderInterface $builder)
     {
         $this->logger->info('Show service data');
-        return $this->service->show();
+        $data = $service->getData();
+
+        return $service->build($data, $builder);
+    }
+
+    /**
+     * @param string $data
+     */
+    private function render($data)
+    {
+        $this->logger->info('Render information');
+        $content = $data;
+
+        require_once "views/index.php";
     }
 
     /**
@@ -42,8 +56,9 @@ class Application extends BaseApplication
     {
         try{
             $this->initEnv();
-            $this->createSocialService(TwitterDriver::class);
-            echo $this->getSocialData();
+            $service = $this->createSocialService(TwitterDriver::class);
+            $content = $this->getSocialData($service, new ViewBuilder());
+            $this->render($content);
         } catch (Exception $e) {
             $this->logger->error($e->getMessage());
         }

@@ -8,7 +8,14 @@ namespace Dykyi\Handle;
 interface SocialDriverInterface
 {
     /**
-     * @return string
+     * @return array
      */
-    public function show();
+    public function getData();
+
+    /**
+     * @param array $data
+     * @param BuilderInterface $builder
+     * @return mixed
+     */
+    public function build(array $data, BuilderInterface $builder);
 }

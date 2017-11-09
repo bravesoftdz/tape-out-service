@@ -2,6 +2,7 @@
 
 namespace Dykyi\Driver;
 
+use Dykyi\Handle\BuilderInterface;
 use Dykyi\Handle\SocialDriverInterface;
 
 /**
@@ -11,8 +12,18 @@ use Dykyi\Handle\SocialDriverInterface;
 class FacebookDriver implements SocialDriverInterface
 {
 
-    public function show()
+    public function getData()
     {
-        return 'facebook data ...';
+        return [];
+    }
+
+    /**
+     * @param array $data
+     * @param BuilderInterface $builder
+     * @return string
+     */
+    public function build(array $data, BuilderInterface $builder)
+    {
+        return 'facebook';
     }
 }
