@@ -56,8 +56,8 @@ class TwitterDriver implements SocialDriverInterface
         foreach ($data as $post){
             $result .=  $builder->build([
                 $post->user->profile_image_url,
-                $post->user->name,
                 $post->user->url,
+                $post->user->name,
                 $post->text
             ]);
         }
