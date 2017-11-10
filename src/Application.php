@@ -3,7 +3,9 @@
 namespace Dykyi;
 
 use Dykyi\Driver\TwitterDriver;
+use Dykyi\Exceptions\ClassNotFoundException;
 use Dykyi\Handle\BuilderInterface;
+use Dykyi\Handle\ResponseDataExtractorInterface;
 use Dykyi\Handle\SocialDriverInterface;
 use Exception;
 
@@ -15,6 +17,7 @@ class Application extends BaseApplication
 {
     /**
      * @param $serviceName
+     * @throws ClassNotFoundException
      * @return mixed
      */
     private function createSocialService($serviceName)
@@ -27,13 +30,14 @@ class Application extends BaseApplication
 
     /**
      * @param SocialDriverInterface $service
+     * @param ResponseDataExtractorInterface $extractor
      * @param BuilderInterface $builder
      * @return mixed
      */
-    private function getSocialData(SocialDriverInterface $service, BuilderInterface $builder)
+    private function getSocialData(SocialDriverInterface $service, ResponseDataExtractorInterface $extractor, BuilderInterface $builder)
     {
         $this->logger->info('Show service data');
-        $data = $service->getData();
+        $data = $service->getData($extractor);
 
         return $service->build($data, $builder);
     }
@@ -57,7 +61,7 @@ class Application extends BaseApplication
         try{
             $this->initEnv();
             $service = $this->createSocialService(TwitterDriver::class);
-            $content = $this->getSocialData($service, new ViewBuilder());
+            $content = $this->getSocialData($service, new ResponseDataExtractor(), new ViewBuilder());
             $this->render($content);
         } catch (Exception $e) {
             $this->logger->error($e->getMessage());

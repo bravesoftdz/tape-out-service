@@ -3,6 +3,7 @@
 namespace Dykyi\Driver;
 
 use Dykyi\Handle\BuilderInterface;
+use Dykyi\Handle\ResponseDataExtractorInterface;
 use Dykyi\Handle\SocialDriverInterface;
 
 /**
@@ -12,7 +13,11 @@ use Dykyi\Handle\SocialDriverInterface;
 class NullDriver implements SocialDriverInterface
 {
 
-    public function getData()
+    /**
+     * @param ResponseDataExtractorInterface $extractor
+     * @return array
+     */
+    public function getData(ResponseDataExtractorInterface $extractor)
     {
         return [];
     }

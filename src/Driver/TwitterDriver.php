@@ -2,6 +2,8 @@
 
 namespace Dykyi\Driver;
 
+use Dykyi\Exceptions\ClientException;
+use Dykyi\Handle\ResponseDataExtractorInterface;
 use Exception;
 use Dykyi\Config;
 use Dykyi\Handle\BuilderInterface;
@@ -16,9 +18,10 @@ use GuzzleHttp\Subscriber\Oauth\Oauth1;
 class TwitterDriver implements SocialDriverInterface
 {
     /**
-     * @return array
+     * @param ResponseDataExtractorInterface $extractor
+     * @return mixed
      */
-    public function getData()
+    public function getData(ResponseDataExtractorInterface $extractor)
     {
         $stack = \GuzzleHttp\HandlerStack::create();
 
@@ -42,7 +45,7 @@ class TwitterDriver implements SocialDriverInterface
             var_dump($e->getMessage()); die();
         }
 
-        return json_decode($response->getBody());
+        return $extractor->extract($response);
     }
 
     /**

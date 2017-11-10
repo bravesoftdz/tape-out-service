@@ -2,13 +2,14 @@
 
 namespace Dykyi\Exceptions;
 
-use Exception;
+use RuntimeException;
 
 /**
  * Class ClientException
  * @package Dykyi\Exceptions
  */
-class ClientException extends Exception
+class ClientException extends RuntimeException
 {
     const ERROR_1 = 'File %s not found!';
+    const ERROR_2 = "Can't decode response: %s";
 }

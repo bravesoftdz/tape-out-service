@@ -8,9 +8,10 @@ namespace Dykyi\Handle;
 interface SocialDriverInterface
 {
     /**
+     * @param ResponseDataExtractorInterface $extractor
      * @return array
      */
-    public function getData();
+    public function getData(ResponseDataExtractorInterface $extractor);
 
     /**
      * @param array $data
