@@ -32,7 +32,7 @@ class Application extends BaseApplication
      * @param SocialDriverInterface $service
      * @param ResponseDataExtractorInterface $extractor
      * @param BuilderInterface $builder
-     * @return mixed
+     * @return string
      */
     private function getSocialData(SocialDriverInterface $service, ResponseDataExtractorInterface $extractor, BuilderInterface $builder)
     {

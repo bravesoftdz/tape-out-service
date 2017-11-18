@@ -19,7 +19,7 @@ class NullDriver implements SocialDriverInterface
      */
     public function getData(ResponseDataExtractorInterface $extractor)
     {
-        return [];
+        return [true => 1];
     }
 
     /**

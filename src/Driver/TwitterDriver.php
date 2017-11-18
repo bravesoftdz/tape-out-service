@@ -2,7 +2,6 @@
 
 namespace Dykyi\Driver;
 
-use Dykyi\Exceptions\ClientException;
 use Dykyi\Handle\ResponseDataExtractorInterface;
 use Exception;
 use Dykyi\Config;

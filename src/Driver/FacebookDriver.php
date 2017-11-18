@@ -19,7 +19,7 @@ class FacebookDriver implements SocialDriverInterface
      */
     public function getData(ResponseDataExtractorInterface $extractor)
     {
-        return [];
+        return ['test' => '2345'];
     }
 
     /**

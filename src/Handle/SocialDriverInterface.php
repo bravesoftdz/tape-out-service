@@ -16,7 +16,7 @@ interface SocialDriverInterface
     /**
      * @param array $data
      * @param BuilderInterface $builder
-     * @return mixed
+     * @return string
      */
     public function build(array $data, BuilderInterface $builder);
 }
